@@ -416,21 +416,14 @@ def show_pl_analytics_page():
     
     temporary_df = calculate_profit_loss(new_df1, df3, start_date, end_date)
     # Remove rows with NaN in 'Profit/Loss' column
-    temporary_df = temporary_df.dropna(subset=['Profit/Loss'])
-    # Display the temporary DataFrame
-    # st.write("Profit and Loss Data:")
-    # st.dataframe(temporary_df)
-    # Group by sector for aggregated Profit/Loss
+
     new_df2 = temporary_df.groupby('Sector').agg({'Profit/Loss': 'sum', 'Base': 'sum', 'Amount': 'sum'}).reset_index()
-    # st.write("Profit and Loss Data by Sector:")
-    # st.dataframe(new_df2, use_container_width=True)
-    
-    
-    
+       
     st.markdown("<h2 style='text-align: center;'>KPIs</h2>", unsafe_allow_html=True)
+    # To add space between the KPIs title and actual figures
     st.write(" ")
     st.write(" ") 
-    # to add space between KPIs Title and values
+    
     
     total_sales = new_df2['Amount'].sum()
     total_profit = new_df2['Profit/Loss'].sum()
