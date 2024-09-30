@@ -39,9 +39,9 @@ def show_upload_page():
     sales_uploaded_file = st.file_uploader("Choose a Sales file", type=["xlsx"], key="sales", label_visibility="collapsed")
     st.markdown("<div class='upload-text'>Upload your Base Price File</div>", unsafe_allow_html=True)
     base_price_uploaded_file = st.file_uploader("Choose a Base Price file", type=["xlsx"], key="base_price", label_visibility="collapsed")
-
-    col1, col2, col3 = st.columns([1,1,1], gap="small")
-
+    
+    col1,spacer1, col2, spacer2, col3 = st.columns([1,1,1,1,1], gap="small")
+    
     with col1: 
         if st.button("Inventory Report", key="next"):
             if uploaded_file and sales_uploaded_file and base_price_uploaded_file:
