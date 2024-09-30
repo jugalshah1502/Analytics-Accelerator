@@ -88,6 +88,9 @@ def inventory_report_page():
     df2['Sector'] = df2['Sector'].str.replace('-', '', regex=False)
     df2.rename(columns={'Current Seat': 'Unsold Seats', 'Total Seat': 'Total Seats'}, inplace=True)
 
+    #removing the rows where total seats is 0 to avoid division by zero error
+    df2 = df2[df2['Total Seats'] != 0]
+    
     # Adding new columns
     df2['Sold Seats'] = df2['Total Seats'] - df2['Unsold Seats']
     df2['MAT_Ratio'] = df2['Sold Seats'] / df2['Total Seats'] * 100
